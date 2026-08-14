@@ -1,0 +1,69 @@
+/* إعدادات عامة */
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #F7F9FC; 
+}
+
+.custom-container {
+    max-width: 800px;
+}
+
+/* الألوان المخصصة للمنصة */
+.text-primary-dark {
+    color: #202345;
+}
+
+.text-primary-blue {
+    color: #5957D5;
+}
+
+.text-muted-custom {
+    color: #666666;
+}
+
+/* تنسيقات رأس الصفحة */
+.icon-container {
+    width: 70px;
+    height: 70px;
+}
+
+.update-date-badge {
+    background-color: #E9ECEF;
+    color: #666666;
+}
+
+/* تنسيقات كروت الشروط */
+.term-card {
+    border-right: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.term-card:hover {
+    border-right-color: #5957D5;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); 
+}
+
+/* دائرة الرقم */
+.term-number {
+    width: 45px;
+    height: 45px;
+    background-color: #F7F9FC;
+    color: #202345;
+}
+
+/* زر "المزيد..." */
+.read-more-link {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.read-more-link:hover {
+    color: #202345;
+}
+
+/* تنسيقات الـ Modal (النافذة المنبثقة) */
+.custom-modal-content {
+    border-radius: 16px;
+    border: none;
+}
