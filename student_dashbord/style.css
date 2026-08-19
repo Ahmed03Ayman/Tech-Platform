@@ -1,21 +1,20 @@
 *{
     margin: 0;
     padding: 0;
-    
+    box-sizing: border-box;
 }
 body{
     background-color: #f7f9fc;
     font-family: sans-serif;
     overflow-x: hidden;
 }
-/* تقسيم الشاشه */
+/* تقسيم الشاشه للكمبيوتر */
 .container {
     display: grid;
-    grid-template-columns: 260px 1fr; /* السيدبار 260 بيكسل والباقي للمحتوى */
+    grid-template-columns: 260px 1fr;
     min-height: 100vh;
     width: 100vw;
 }
-
 
 /* السيدبار*/
 .sidebar {
@@ -24,18 +23,30 @@ body{
     display: flex;
     flex-direction: column;
     border-left: 1px solid #e2e8f0;
-    /* box-shadow: 4px 0 20px rgba(0, 0, 0, 0.01); */
+}
+.Logo{
+    width: 32px;
+    height: 32px;
+    color: #ebf8ff;
+    background-color: #0066ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+   
+
 }
 
 .sidebar-logo{
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 1.4rem;
-    font-weight: 800px;
+    font-size: 1.5rem;
+    font-weight: bold;
     color: #0066ff;
     justify-content: center;
     padding: 10px 0;
+   
 }
 
 .divider {
@@ -81,7 +92,15 @@ body{
     padding: 14px 16px;
     color: #e53e3e;
     text-decoration: none;
-    font-weight: center;
+    font-weight: 600;
+}
+
+/* إخفاء عناصر المبايل التلقائية في الكمبيوتر */
+.menu-checkbox, .hamburger-btn, .d-mobile-only {
+    display: none;
+}
+.d-desktop-only {
+    display: flex;
 }
 
 /* محتوى الأساسي */
@@ -153,14 +172,6 @@ body{
     color: #2d3748;
     font-weight: 800;
 }
-.card-icon {
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 /* الجدول */
 .table-card {
@@ -192,7 +203,6 @@ body{
     width: 100%;
     text-align: right;
     border-collapse: collapse;
-    
 }
 .tech-table th {
     background-color: #f7f9fc;
@@ -212,6 +222,7 @@ body{
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.85rem;
+    display: inline-block;
 }
 .badge-blue { background-color: #ebf8ff; color: #0066ff; }
 .badge-purple { background-color: #faf5ff; color: #9f7aea; }
@@ -227,6 +238,109 @@ body{
     text-decoration: none;
     font-weight: 600;
     font-size: 0.85rem;
-    align-items: center;
-    gap: 6px;
+    display: inline-block;
+}
+
+/* ========================================================== */
+/*                   أكواد التجاوب الصحيحة والمظبوطة          */
+/* ========================================================== */
+
+@media (max-width: 991px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-left: none;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 15px 20px;
+    }
+    
+    .sidebar-header-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    
+    /* 🍔 إظهار وحقن شكل الـ 3 شرط المظبوطة هندسياً */
+    .hamburger-btn {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+    .hamburger-btn span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #0066ff;
+        border-radius: 2px;
+        transition: 0.3s ease;
+    }
+    
+    /* إخفاء القائمة في الموبايل بشكل افتراضي */
+    .sidebar-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    /* فتح القائمة عند الضغط على الـ 3 شرط */
+    .menu-checkbox:checked ~ .sidebar-menu {
+        display: flex;
+    }
+    
+    /* تحويل الـ 3 شرط لعلامة X عند الفتح */
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .menu-link {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .main-content {
+        padding: 15px;
+        gap: 20px;
+    }
+    
+    .top-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* التحكم في إخفاء وإظهار زر تسجيل الخروج لعدم التكرار */
+    .d-desktop-only { display: none !important; }
+    .d-mobile-only { display: flex !important; }
 }
