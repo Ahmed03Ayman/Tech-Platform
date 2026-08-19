@@ -1,0 +1,232 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+body{
+    background-color: #f7f9fc;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+/* تقسيم الشاشه */
+.container {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* السيدبار 260 بيكسل والباقي للمحتوى */
+    min-height: 100vh;
+    width: 100vw;
+}
+
+
+/* السيدبار*/
+.sidebar {
+    background-color: #ffffff;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #e2e8f0;
+    /* box-shadow: 4px 0 20px rgba(0, 0, 0, 0.01); */
+}
+
+.sidebar-logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    font-weight: 800px;
+    color: #0066ff;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #edf2f7;
+    margin: 20px 0;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 16px;
+    color: #4a5568;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.menu-link:hover {
+    background-color: #f0f4ff;
+    color: #0066ff;
+}
+
+.menu-link.active {
+    background:  #0066ff ;
+    color: #ffffff ;
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.15);
+}
+
+.logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 16px;
+    color: #e53e3e;
+    text-decoration: none;
+    font-weight: center;
+}
+
+/* محتوى الأساسي */
+.main-content{
+    padding: 40px;
+    display: flex;
+    flex-direction:column ;
+    gap: 30px ;
+}
+
+.top-navbar{
+    background-color: #ffffff;
+    padding: 18px 24px;
+    border-radius: 16px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #edf2f7;
+}
+.welcome-text h5{ 
+     color: #718096;
+    font-weight: 600;
+} 
+.user-profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #0066ff;
+    font-weight: 700;
+}
+.section-header h2{
+    color: #1a202c;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+.section-header p {
+    color: #718096;
+}
+
+/* الكروت */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+.tech-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tech-card:hover {
+    transform: translateY(-4px);
+}
+.border-blue { border-right: 5px solid #0066ff; }
+.border-green { border-right: 5px solid #48bb78; }
+.border-orange { border-right: 5px solid #ed8936; }
+.border-purple { border-right: 5px solid #9f7aea; }
+
+.card-info span {
+    font-size: 0.85rem;
+    color: #a0aec0;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+.card-info h3 {
+    color: #2d3748;
+    font-weight: 800;
+}
+.card-icon {
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* الجدول */
+.table-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    border: 1px solid #edf2f7;
+}
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.table-header h4 {
+    color: #2d3748;
+    font-weight: 800;
+}
+.status-badge {
+    background-color: #ebf8ff;
+    color: #0066ff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+.tech-table {
+    width: 100%;
+    text-align: right;
+    border-collapse: collapse;
+    
+}
+.tech-table th {
+    background-color: #f7f9fc;
+    color: #718096;
+    padding: 16px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+.tech-table td {
+    padding: 18px 16px;
+    border-bottom: 1px solid #edf2f7;
+    color: #2d3748;
+}
+
+.tech-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.badge-blue { background-color: #ebf8ff; color: #0066ff; }
+.badge-purple { background-color: #faf5ff; color: #9f7aea; }
+
+.btn-action:hover {
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.25);
+}
+.btn-action {
+    background: #0066ff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    align-items: center;
+    gap: 6px;
+}
