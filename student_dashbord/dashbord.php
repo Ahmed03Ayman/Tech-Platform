@@ -1,3 +1,15 @@
+
+<?php
+session_start();
+include '../connection.php'; 
+
+// قفل الأمان ومنع الدخول بدون تسجيل
+if (!isset($_SESSION['user_id'])) {
+    header('location:../login.php'); // يرجعه لصفحة تسجيل الدخول لو مش مسجل
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
@@ -31,8 +43,8 @@
             <div class="sidebar-menu">
                 <a href="home.php" class="menu-link active"> الرئيسية</a>
                 <a href="courses.php"  class="menu-link"> موادي الدراسية</a>
-                <a href="#"  class="menu-link"> الامتحانات الكويزات</a>
-                <a href="#"  class="menu-link"> الملف الشخصي</a>
+                <a href="courses.php"  class="menu-link"> الامتحانات الكويزات</a>
+                <a href="dashbord.php"  class="menu-link"> الملف الشخصي</a>
                 <hr class="divider d-mobile-only">
                 <a href="#" class="logout d-mobile-only"> تسجيل الخروج</a>
             </div>

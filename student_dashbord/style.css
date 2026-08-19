@@ -224,8 +224,7 @@ body{
     font-size: 0.85rem;
     display: inline-block;
 }
-.badge-blue { background-color: #ebf8ff; color: #0066ff; }
-.badge-purple { background-color: #faf5ff; color: #9f7aea; }
+
 
 .btn-action:hover {
     box-shadow: 0 6px 16px rgba(0, 102, 255, 0.25);
