@@ -1,10 +1,19 @@
 <?php 
+session_start();
 require_once 'connection.php'; 
 
-// 1. جلب رقم الكورس من الرابط، لو مفيش رقم نخليه 1 افتراضي
+// 1. جلب رقم الكورس من الرابط وتأمينه
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 1;
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : (isset($_SESSION['id']) ? $_SESSION['id'] : 1);
 
-// 2. استعلام لجلب بيانات الكورس واسم المهندس من الداتا بيز
+// 2. الفحص الذكي: هل الطالب مشترك في هذا الكورس؟
+$is_enrolled = false;
+$check_enroll = mysqli_query($conn, "SELECT * FROM user_course WHERE user_id = '$user_id' AND course_id = '$course_id'");
+if ($check_enroll && mysqli_num_rows($check_enroll) > 0) {
+    $is_enrolled = true;
+}
+
+// 3. استعلام لجلب بيانات الكورس واسم المهندس من الداتا بيز
 $query = "SELECT courses.*, instructors.name AS instructor_name, categories.name AS category_name 
           FROM courses 
           LEFT JOIN instructors ON courses.instructor_id = instructors.id
@@ -13,11 +22,9 @@ $query = "SELECT courses.*, instructors.name AS instructor_name, categories.name
 
 $result = mysqli_query($conn, $query);
 
-// 3. التحقق من وجود الكورس
 if ($result && mysqli_num_rows($result) > 0) {
     $course = mysqli_fetch_assoc($result);
 } else {
-    // بيانات افتراضية لو الكورس لسه متضافش في قاعدة البيانات
     $course = [
         'title' => 'كورس تعليمي جديد',
         'grade_level' => 'المرحلة الدراسية غير محددة',
@@ -63,10 +70,16 @@ include 'header.php';
     .enroll-btn {
         display: inline-block; background: #4f46e5; color: white;
         padding: 13px 30px; border-radius: 10px; font-weight: bold; font-size: 14px;
-        margin-bottom: 35px; transition: .3s;
+        margin-bottom: 35px; transition: .3s; text-decoration: none;
     }
     .enroll-btn:hover { background: #3730a3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(79,70,229,.2);}
     
+    .enrolled-status-btn {
+        display: inline-block; background: #10b981; color: white;
+        padding: 13px 30px; border-radius: 10px; font-weight: bold; font-size: 14px;
+        margin-bottom: 35px; text-decoration: none; cursor: default;
+    }
+
     .lesson {
         background: white; border: 1px solid #eee; border-radius: 16px;
         padding: 20px; margin-bottom: 15px; display: flex;
@@ -83,7 +96,6 @@ include 'header.php';
     .completed { color: #22a98f; font-size: 13px; font-weight: bold; }
     .locked { color: #aaa; font-size: 13px; }
 
-    /* Team Section */
     .team-section { margin-top: 60px; }
     .team-title { text-align: center; margin-bottom: 30px; }
     .team-title h2 { font-size: 30px; margin-bottom: 8px; color: #202333;}
@@ -115,11 +127,9 @@ include 'header.php';
 
     <a href="courses.php" class="back">← العودة للكورسات</a>
 
-    <!-- Course Information -->
     <div class="course-header">
         <div>
             <span class="tag">منصة TEC</span>
-            <!-- عرض بيانات الكورس من الداتا بيز -->
             <h1><?php echo htmlspecialchars($course['grade_level'] ?? 'مرحلة غير محددة'); ?></h1>
             <p><i class="fa-solid fa-book me-1"></i> <?php echo htmlspecialchars($course['title']); ?></p>
             <p><i class="fa-solid fa-clock me-1"></i> المدة: <?php echo htmlspecialchars($course['duration'] ?? 'غير محدد'); ?></p>
@@ -134,15 +144,15 @@ include 'header.php';
         </div>
     </div>
 
-    <!-- إرسال رقم الكورس لصفحة الدفع -->
-    <a href="payment.php?course_id=<?php echo $course_id; ?>" class="enroll-btn">
-        اشترك الآن
-    </a>
+    <!-- زر الاشتراك الذكي -->
+    <?php if ($is_enrolled): ?>
+        <span class="enrolled-status-btn">✓ أنت مشترك في هذا الكورس</span>
+    <?php else: ?>
+        <a href="payment.php?course_id=<?php echo $course_id; ?>" class="enroll-btn">اشترك الآن</a>
+    <?php endif; ?>
 
-    <!-- Lessons -->
     <h2 class="lessons-title">الدروس</h2>
     
-    <!-- الدرس الأول: مفتوح -->
     <div class="lesson">
         <div class="lesson-info">
             <div class="lesson-number">✓</div>
@@ -154,7 +164,6 @@ include 'header.php';
         <span class="completed">متاح مجاناً</span>
     </div>
 
-    <!-- الدرس الثاني: مفتوح -->
     <div class="lesson">
         <div class="lesson-info">
             <div class="lesson-number">02</div>
@@ -166,8 +175,7 @@ include 'header.php';
         <span class="completed">متاح مجاناً</span>
     </div>
 
-    <!-- الدرس الثالث: مقفول (يودي للدفع) -->
-    <a href="payment.php?course_id=<?php echo $course_id; ?>" class="lesson">
+    <a href="<?php echo $is_enrolled ? '#' : 'payment.php?course_id=' . $course_id; ?>" class="lesson">
         <div class="lesson-info">
             <div class="lesson-number" style="background: #f8f9fa; color: #aaa;">03</div>
             <div>
@@ -175,11 +183,12 @@ include 'header.php';
                 <p>15:10 دقيقة</p>
             </div>
         </div>
-        <span class="locked">🔒 اشترك للمشاهدة</span>
+        <span class="<?php echo $is_enrolled ? 'completed' : 'locked'; ?>">
+            <?php echo $is_enrolled ? 'متاح للمشاهدة' : '🔒 اشترك للمشاهدة'; ?>
+        </span>
     </a>
 
-    <!-- الدرس الرابع: مقفول (يودي للدفع) -->
-    <a href="payment.php?course_id=<?php echo $course_id; ?>" class="lesson">
+    <a href="<?php echo $is_enrolled ? '#' : 'payment.php?course_id=' . $course_id; ?>" class="lesson">
         <div class="lesson-info">
             <div class="lesson-number" style="background: #f8f9fa; color: #aaa;">04</div>
             <div>
@@ -187,11 +196,12 @@ include 'header.php';
                 <p>22:45 دقيقة</p>
             </div>
         </div>
-        <span class="locked">🔒 اشترك للمشاهدة</span>
+        <span class="<?php echo $is_enrolled ? 'completed' : 'locked'; ?>">
+            <?php echo $is_enrolled ? 'متاح للمشاهدة' : '🔒 اشترك للمشاهدة'; ?>
+        </span>
     </a>
 
-    <!-- الدرس الخامس: مقفول (يودي للدفع) -->
-    <a href="payment.php?course_id=<?php echo $course_id; ?>" class="lesson">
+    <a href="<?php echo $is_enrolled ? '#' : 'payment.php?course_id=' . $course_id; ?>" class="lesson">
         <div class="lesson-info">
             <div class="lesson-number" style="background: #f8f9fa; color: #aaa;">05</div>
             <div>
@@ -199,10 +209,11 @@ include 'header.php';
                 <p>18:30 دقيقة</p>
             </div>
         </div>
-        <span class="locked">🔒 اشترك للمشاهدة</span>
+        <span class="<?php echo $is_enrolled ? 'completed' : 'locked'; ?>">
+            <?php echo $is_enrolled ? 'متاح للمشاهدة' : '🔒 اشترك للمشاهدة'; ?>
+        </span>
     </a>
 
-    <!-- Team -->
     <section class="team-section">
         <div class="team-title">
             <span class="tag">TEC Team</span>

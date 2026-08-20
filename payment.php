@@ -1,8 +1,9 @@
 <?php
+session_start();
 include 'connection.php';
 
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : (isset($_SESSION['id']) ? $_SESSION['id'] : 1);
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 1;
-$user_id = 1;
 
 $is_already_enrolled = false;
 $check_enroll_query = "SELECT * FROM user_course WHERE user_id = '$user_id' AND course_id = '$course_id'";
@@ -15,7 +16,7 @@ if ($check_enroll_result && mysqli_num_rows($check_enroll_result) > 0) {
 $course_query = "SELECT * FROM courses WHERE id = '$course_id'";
 $course_result = mysqli_query($conn, $course_query);
 $course_data = mysqli_fetch_assoc($course_result);
-$course_name = isset($course_data['title']) ? $course_data['title'] : 'كورس البرمجة المتقدم';
+$course_name = isset($course_data['title']) ? $course_data['title'] : (isset($course_data['name']) ? $course_data['name'] : 'كورس البرمجة المتقدم');
 $course_price = isset($course_data['price']) ? $course_data['price'] : 1500;
 ?>
 
