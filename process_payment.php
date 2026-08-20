@@ -1,18 +1,15 @@
 <?php
+session_start();
 include 'connection.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.php');
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $course_id = isset($_POST['course_id']) ? intval($_POST['course_id']) : 0;
-    
-    $user_query = "SELECT id FROM users LIMIT 1";
-    $user_result = mysqli_query($conn, $user_query);
-    
-    if ($user_result && mysqli_num_rows($user_result) > 0) {
-        $user_data = mysqli_fetch_assoc($user_result);
-        $user_id = $user_data['id'];
-    } else {
-        $user_id = 1;
-    }
+    $user_id   = $_SESSION['user_id'];
 
     if ($course_id > 0) {
         mysqli_query($conn, "SET FOREIGN_KEY_CHECKS = 0");

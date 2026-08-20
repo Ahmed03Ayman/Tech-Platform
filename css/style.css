@@ -1,11 +1,361 @@
-/* إعدادات عامة */
-body {
-    font-family: 'Cairo', sans-serif;
-    background-color: #F7F9FC; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+/* ========================================================== */
+/*                   الإعدادات العامة المدمجة                 */
+/* ========================================================== */
+body {
+    background-color: #f7f9fc;
+    font-family: 'Cairo', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ========================================================== */
+/*                 تنسيقات لوحة التحكم (Dashboard)            */
+/* ========================================================== */
+
+/* تقسيم الشاشه للكمبيوتر */
+.container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* السيدبار*/
+.sidebar {
+    background-color: #ffffff;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #e2e8f0;
+}
+.Logo{
+    width: 32px;
+    height: 32px;
+    color: #ebf8ff;
+    background-color: #0066ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+}
+
+.sidebar-logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0066ff;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #edf2f7;
+    margin: 20px 0;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 16px;
+    color: #4a5568;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.menu-link:hover {
+    background-color: #f0f4ff;
+    color: #0066ff;
+}
+
+.menu-link.active {
+    background:  #0066ff ;
+    color: #ffffff ;
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.15);
+}
+
+.logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 16px;
+    color: #e53e3e;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* إخفاء عناصر المبايل التلقائية في الكمبيوتر */
+.menu-checkbox, .hamburger-btn, .d-mobile-only {
+    display: none;
+}
+.d-desktop-only {
+    display: flex;
+}
+
+/* محتوى الأساسي */
+.main-content{
+    padding: 40px;
+    display: flex;
+    flex-direction:column ;
+    gap: 30px ;
+}
+
+.top-navbar{
+    background-color: #ffffff;
+    padding: 18px 24px;
+    border-radius: 16px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #edf2f7;
+}
+.welcome-text h5{ 
+     color: #718096;
+    font-weight: 600;
+} 
+.user-profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #0066ff;
+    font-weight: 700;
+}
+.section-header h2{
+    color: #1a202c;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+.section-header p {
+    color: #718096;
+}
+
+/* الكروت */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+.tech-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tech-card:hover {
+    transform: translateY(-4px);
+}
+.border-blue { border-right: 5px solid #0066ff; }
+.border-green { border-right: 5px solid #48bb78; }
+.border-orange { border-right: 5px solid #ed8936; }
+.border-purple { border-right: 5px solid #9f7aea; }
+
+.card-info span {
+    font-size: 0.85rem;
+    color: #a0aec0;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+.card-info h3 {
+    color: #2d3748;
+    font-weight: 800;
+}
+
+/* الجدول */
+.table-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    border: 1px solid #edf2f7;
+}
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.table-header h4 {
+    color: #2d3748;
+    font-weight: 800;
+}
+.status-badge {
+    background-color: #ebf8ff;
+    color: #0066ff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+.tech-table {
+    width: 100%;
+    text-align: right;
+    border-collapse: collapse;
+}
+.tech-table th {
+    background-color: #f7f9fc;
+    color: #718096;
+    padding: 16px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+.tech-table td {
+    padding: 18px 16px;
+    border-bottom: 1px solid #edf2f7;
+    color: #2d3748;
+}
+
+.tech-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.btn-action:hover {
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.25);
+}
+.btn-action {
+    background: #0066ff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+/* ========================================================== */
+/*                   أكواد التجاوب الصحيحة والمظبوطة          */
+/* ========================================================== */
+
+@media (max-width: 991px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-left: none;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 15px 20px;
+    }
+    
+    .sidebar-header-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    
+    /* إظهار وحقن شكل الـ 3 شرط المظبوطة هندسياً */
+    .hamburger-btn {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+    .hamburger-btn span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #0066ff;
+        border-radius: 2px;
+        transition: 0.3s ease;
+    }
+    
+    /* إخفاء القائمة في الموبايل بشكل افتراضي */
+    .sidebar-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    /* فتح القائمة عند الضغط على الـ 3 شرط */
+    .menu-checkbox:checked ~ .sidebar-menu {
+        display: flex;
+    }
+    
+    /* تحويل الـ 3 شرط لعلامة X عند الفتح */
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .menu-link {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .main-content {
+        padding: 15px;
+        gap: 20px;
+    }
+    
+    .top-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* التحكم في إخفاء وإظهار زر تسجيل الخروج لعدم التكرار */
+    .d-desktop-only { display: none !important; }
+    .d-mobile-only { display: flex !important; }
+}
+
+/* ========================================================== */
+/*                تنسيقات الصفحات الثابتة (الشروط وغيرها)     */
+/* ========================================================== */
 
 .custom-container {
     max-width: 800px;
+    margin: 0 auto;
 }
 
 /* الألوان المخصصة للمنصة */

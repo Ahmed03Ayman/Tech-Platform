@@ -1,5 +1,11 @@
 <?php
+session_start();
 include 'connection.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.php');
+    exit();
+}
 
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 1;
 

@@ -1,7 +1,6 @@
 <?php include 'header.php'; ?>
 
 <style>
-
     .courses-page {
         padding: 60px 7%;
     }
@@ -39,7 +38,7 @@
     .course-card:hover {
         transform: translateY(-6px);
         border-color: #4f46e5;
-        box-shadow: 0 15px 35px rgba(79,70,229,.12);
+        box-shadow: 0 15px 35px rgba(79, 70, 229, .12);
     }
 
     .course-image {
@@ -108,6 +107,7 @@
         margin-top: 20px;
         font-weight: bold;
         font-size: 13px;
+        transition: .3s;
     }
 
     .course-btn:hover {
@@ -125,7 +125,6 @@
             grid-template-columns: 1fr;
         }
     }
-
 </style>
 
 
@@ -152,218 +151,128 @@
 
 
         <!-- First Preparatory -->
-
         <div class="course-card">
-
             <div class="course-image">💻</div>
-
             <h2>الصف الأول الإعدادي</h2>
-
-            <div class="subject">
-                التكنولوجيا
-            </div>
-
-            <div class="teacher">
-                Eng. Abdelrahman
-            </div>
-
-            <div class="course-info">
-                10 دروس
-            </div>
-
+            <div class="subject">التكنولوجيا</div>
+            <div class="teacher">Eng. Abdelrahman</div>
+            <div class="course-info">10 دروس</div>
             <div class="progress-info">
                 <span>التقدم</span>
                 <span>60%</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar" style="width:60%"></div>
             </div>
-
-            <a href="course-details.php" class="course-btn">
+            <!-- تم تعديل الرابط هنا بإضافة ID = 1 -->
+            <a href="course-details.php?course_id=1" class="course-btn">
                 ابدأ التعلم
             </a>
-
         </div>
 
 
         <!-- Second Preparatory -->
-
         <div class="course-card">
-
             <div class="course-image">⚙️</div>
-
             <h2>الصف الثاني الإعدادي</h2>
-
-            <div class="subject">
-                التكنولوجيا
-            </div>
-
-            <div class="teacher">
-                Eng. Ayat Matter
-            </div>
-
-            <div class="course-info">
-                12 درس
-            </div>
-
+            <div class="subject">التكنولوجيا</div>
+            <div class="teacher">Eng. Ayat Matter</div>
+            <div class="course-info">12 درس</div>
             <div class="progress-info">
                 <span>التقدم</span>
                 <span>40%</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar" style="width:40%"></div>
             </div>
-
-            <a href="course-details.php" class="course-btn">
+            <!-- تم تعديل الرابط هنا بإضافة ID = 2 -->
+            <a href="course-details.php?course_id=2" class="course-btn">
                 ابدأ التعلم
             </a>
-
         </div>
 
 
         <!-- Third Preparatory -->
-
         <div class="course-card">
-
             <div class="course-image">🌐</div>
-
             <h2>الصف الثالث الإعدادي</h2>
-
-            <div class="subject">
-                التكنولوجيا
-            </div>
-
-            <div class="teacher">
-                Eng. Ahmed Ayman
-            </div>
-
-            <div class="course-info">
-                15 درس
-            </div>
-
+            <div class="subject">التكنولوجيا</div>
+            <div class="teacher">Eng. Ahmed Ayman</div>
+            <div class="course-info">15 درس</div>
             <div class="progress-info">
                 <span>التقدم</span>
                 <span>20%</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar" style="width:20%"></div>
             </div>
-
-            <a href="course-details.php" class="course-btn">
+            <!-- تم تعديل الرابط هنا بإضافة ID = 3 -->
+            <a href="course-details.php?course_id=3" class="course-btn">
                 ابدأ التعلم
             </a>
-
         </div>
 
 
         <!-- First Secondary -->
-
         <div class="course-card">
-
             <div class="course-image">💻</div>
-
             <h2>الصف الأول الثانوي</h2>
-
-            <div class="subject">
-                البرمجة
-            </div>
-
-            <div class="teacher">
-                Eng. Wafaa
-            </div>
-
-            <div class="course-info">
-                20 درس
-            </div>
-
+            <div class="subject">البرمجة</div>
+            <div class="teacher">Eng. Wafaa</div>
+            <div class="course-info">20 درس</div>
             <div class="progress-info">
                 <span>التقدم</span>
                 <span>30%</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar" style="width:30%"></div>
             </div>
-
-            <a href="course-details.php" class="course-btn">
+            <!-- تم تعديل الرابط هنا بإضافة ID = 4 -->
+            <a href="course-details.php?course_id=4" class="course-btn">
                 ابدأ التعلم
             </a>
-
         </div>
 
 
         <!-- Second Secondary -->
-
         <div class="course-card">
-
             <div class="course-image">⌨️</div>
-
             <h2>الصف الثاني الثانوي</h2>
-
-            <div class="subject">
-                البرمجة
-            </div>
-
-            <div class="teacher">
-                Eng. Ganna
-            </div>
-
-            <div class="course-info">
-                20 درس
-            </div>
-
+            <div class="subject">البرمجة</div>
+            <div class="teacher">Eng. Ganna</div>
+            <div class="course-info">20 درس</div>
             <div class="progress-info">
                 <span>التقدم</span>
                 <span>10%</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar" style="width:10%"></div>
             </div>
-
-            <a href="course-details.php" class="course-btn">
+            <!-- تم تعديل الرابط هنا بإضافة ID = 5 -->
+            <a href="course-details.php?course_id=5" class="course-btn">
                 ابدأ التعلم
             </a>
-
         </div>
 
 
         <!-- Third Secondary -->
-
         <div class="course-card">
-
             <div class="course-image">🚀</div>
-
             <h2>الصف الثالث الثانوي</h2>
-
-            <div class="subject">
-                البرمجة
-            </div>
-
-            <div class="teacher">
-                Eng. Ahmed
-            </div>
-
-            <div class="course-info">
-                25 درس
-            </div>
-
+            <div class="subject">البرمجة</div>
+            <div class="teacher">Eng. Ahmed</div>
+            <div class="course-info">25 درس</div>
             <div class="progress-info">
                 <span>التقدم</span>
                 <span>0%</span>
             </div>
-
             <div class="progress">
                 <div class="progress-bar" style="width:0%"></div>
             </div>
-
-            <a href="course-details.php" class="course-btn">
+            <!-- تم تعديل الرابط هنا بإضافة ID = 6 -->
+            <a href="course-details.php?course_id=6" class="course-btn">
                 ابدأ التعلم
             </a>
-
         </div>
 
     </div>
