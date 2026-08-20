@@ -16,8 +16,18 @@ if ($check_enroll_result && mysqli_num_rows($check_enroll_result) > 0) {
 $course_query = "SELECT * FROM courses WHERE id = '$course_id'";
 $course_result = mysqli_query($conn, $course_query);
 $course_data = mysqli_fetch_assoc($course_result);
-$course_name = isset($course_data['title']) ? $course_data['title'] : (isset($course_data['name']) ? $course_data['name'] : 'كورس البرمجة المتقدم');
-$course_price = isset($course_data['price']) ? $course_data['price'] : 1500;
+
+$course_name = isset($course_data['title']) ? $course_data['title'] : (isset($course_data['name']) ? $course_data['name'] : 'كورس تعليمي');
+
+// الفحص الذكي للسعر:
+// إذا كان الكورس مجاني (is_free = 1) يظهر السعر 0 ج.م
+// إذا كان مدفوعاً يقرأ عمود price من الجدول لو موجود، أو يضع 300 ج.م افتراضياً
+$is_free = isset($course_data['is_free']) ? intval($course_data['is_free']) : 0;
+if ($is_free == 1) {
+    $course_price = 0;
+} else {
+    $course_price = isset($course_data['price']) ? $course_data['price'] : 300;
+}
 ?>
 
 <!DOCTYPE html>
